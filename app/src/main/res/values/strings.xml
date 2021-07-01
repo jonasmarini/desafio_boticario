@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">desafio_boticario</string>
+    <string name="jonas_name">Jonas Rodrigo Marini</string>
+    <string name="jonas_email">jonas.marini.tot@gmail.com</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Senha</string>
+    <string name="confirm_password_hint">Confirme a senha</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Cadastrar</string>
+    <string name="not_account">Ainda não tem uma conta?</string>
+    <string name="click_to_register">Clique para se registrar</string>
+    <string name="name_hint">Nome</string>
 </resources>
