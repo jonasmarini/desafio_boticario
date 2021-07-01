@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_posts">
+
+    <fragment
+        android:id="@+id/nav_posts"
+        android:name="fragments.posts.PostsFragment"
+        android:label="@string/menu_posts"
+        tools:layout="@layout/fragment_posts" />
+
+    <fragment
+        android:id="@+id/nav_news_boticario"
+        android:name="fragments.news_boticario.NewsBoticarioFragment"
+        android:label="@string/menu_news_boticario"
+        tools:layout="@layout/fragment_news_boticario" />
+
+    <fragment
+        android:id="@+id/nav_exit"
+        android:name="fragments.slideshow.SlideshowFragment"
+        android:label="@string/menu_exit"
+        tools:layout="@layout/fragment_slideshow" />
+</navigation>

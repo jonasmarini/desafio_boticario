@@ -10,4 +10,7 @@
     <string name="not_account">Ainda não tem uma conta?</string>
     <string name="click_to_register">Clique para se registrar</string>
     <string name="name_hint">Nome</string>
+    <string name="menu_posts">Postagens</string>
+    <string name="menu_news_boticario">Novidades do Boticário</string>
+    <string name="menu_exit">Sair</string>
 </resources>
