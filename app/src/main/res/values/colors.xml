@@ -11,4 +11,5 @@
     <color name="purple_theme">#845EC2</color>
     <color name="pink_theme">#ffdde1</color>
     <color name="dark_purple">#6f45b5</color>
+    <color name="light_purple">#d9cdec</color>
 </resources>
