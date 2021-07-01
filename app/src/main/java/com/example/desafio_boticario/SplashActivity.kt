@@ -13,11 +13,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 1000) //TODO VOLTAR PARA 4000
+        val intent = Intent(this@SplashActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val intent = Intent(this@SplashActivity, LoginActivity::class.java) //TODO VOLTAR ESSE DEPOIS
+//            startActivity(intent)
+//            finish()
+//        }, 3000)
     }
 
 }

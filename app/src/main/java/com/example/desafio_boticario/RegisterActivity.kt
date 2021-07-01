@@ -2,15 +2,20 @@ package com.example.desafio_boticario
 
 import android.os.Bundle
 import android.util.Patterns
-import android.view.View
-import android.view.WindowManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.orm.query.Condition
+import com.orm.query.Select
+import entities.UserEntity
 
 class RegisterActivity : AppCompatActivity() {
+
+    lateinit var layoutRegister: ConstraintLayout
 
     lateinit var inputRegisterName: TextInputLayout
     lateinit var inputRegisterEmail: TextInputLayout
@@ -31,6 +36,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setComponents() {
+
+        layoutRegister = findViewById(R.id.layout_register)
 
         inputRegisterName = findViewById(R.id.input_register_name)
         inputRegisterEmail = findViewById(R.id.input_register_email)
@@ -56,8 +63,23 @@ class RegisterActivity : AppCompatActivity() {
         val validConfirmPassword = validateConfirmPassword()
 
         if (validName && validEmail && validPassword && validConfirmPassword) {
-            //TODO faça login
-            print("Faça login")
+
+            val registeredUser = Select.from(UserEntity::class.java)
+                .where(Condition.prop("email").eq(editRegisterEmail.text.toString()))
+                .first()
+
+            if(registeredUser == null){
+                val user = UserEntity(
+                    editRegisterName.text.toString(),
+                    editRegisterEmail.text.toString(),
+                    editRegisterPassword.text.toString()
+                )
+                user.save()
+                finish()
+            } else {
+                Snackbar.make(layoutRegister, "Este email já está cadastrado", Snackbar.LENGTH_LONG).show()
+            }
+
         }
 
     }
