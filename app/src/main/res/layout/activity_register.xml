@@ -23,6 +23,8 @@
             android:id="@+id/layout_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:clipToPadding="false"
             android:layout_gravity="center_vertical">
 
             <ImageView
@@ -161,7 +163,6 @@
                 android:text="@string/register_btn"
                 style="@style/AppTheme.Button"
                 android:background="@drawable/rounded_button"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_register_confirm_password" />
 
