@@ -14,6 +14,7 @@ import com.orm.query.Condition
 import com.orm.query.Select
 import constants.Constants
 import entities.UserEntity
+import utils.AESEncyption
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -74,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                 val user = UserEntity(
                     editRegisterName.text.toString(),
                     editRegisterEmail.text.toString(),
-                    editRegisterPassword.text.toString()
+                    AESEncyption.encrypt(editRegisterPassword.text.toString())
                 )
                 user.save()
                 val intent = Intent(this@RegisterActivity, LoginActivity::class.java)

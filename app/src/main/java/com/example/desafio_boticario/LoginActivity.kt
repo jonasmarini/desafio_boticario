@@ -14,6 +14,7 @@ import com.orm.query.Condition
 import com.orm.query.Select
 import constants.Constants
 import entities.UserEntity
+import utils.AESEncyption
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
         if (validEmail && validPassword) {
             val user = Select.from(UserEntity::class.java)
                 .where(Condition.prop("email").eq(editEmail.text.toString()),
-                    Condition.prop("password").eq(editPassword.text.toString()))
+                    Condition.prop("password").eq(AESEncyption.encrypt(editPassword.text.toString())))
                 .first()
 
             if(user == null){
