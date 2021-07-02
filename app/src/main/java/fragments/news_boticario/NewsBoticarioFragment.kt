@@ -20,6 +20,7 @@ import rest.ApiInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import utils.ConnectionDetector
 
 class NewsBoticarioFragment : Fragment() {
 
@@ -30,6 +31,7 @@ class NewsBoticarioFragment : Fragment() {
     lateinit var rvNews: RecyclerView
     lateinit var pbNewsBoticario: ProgressBar
     lateinit var txtNoNews: TextView
+    lateinit var txtNoInternet: TextView
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
@@ -45,6 +47,7 @@ class NewsBoticarioFragment : Fragment() {
 
         pbNewsBoticario = view.findViewById(R.id.pb_news_boticario)
         txtNoNews = view.findViewById(R.id.txt_no_news)
+        txtNoInternet = view.findViewById(R.id.txt_no_internet)
         swipeRefreshLayout = view.findViewById(R.id.srl_news_boticario)
 
         swipeRefreshLayout.setColorSchemeResources(R.color.dark_purple)
@@ -66,7 +69,15 @@ class NewsBoticarioFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        getNews()
+        val cd = ConnectionDetector(requireContext())
+        if(!cd.isConnectingToInternet){
+            pbNewsBoticario.visibility = View.GONE
+            txtNoNews.visibility = View.GONE
+            txtNoInternet.visibility = View.VISIBLE
+            return
+        } else {
+            getNews()
+        }
     }
 
     private fun getNews() {
@@ -86,6 +97,7 @@ class NewsBoticarioFragment : Fragment() {
                     newsBoticario.addAll(news)
                     adapter?.notifyDataSetChanged()
                     txtNoNews.visibility = View.GONE
+                    txtNoInternet.visibility = View.GONE
                 }
                 pbNewsBoticario.visibility = View.GONE
 
