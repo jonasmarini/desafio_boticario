@@ -1,6 +1,7 @@
 package fragments.posts
 
 import adapters.PostsAdapter
+import android.app.AlertDialog.Builder
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -40,7 +41,11 @@ class PostsFragment : Fragment() {
     private var offset = 0
     private val loadPerPage = 15
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_posts, container, false)
     }
 
@@ -78,9 +83,14 @@ class PostsFragment : Fragment() {
 
         adapter?.setListener(object : PostsAdapter.PostsListener {
 
-            override fun onButtonClicked(position: Int) {
+            override fun onButtonClicked(position: Int, type: String) {
                 val postEdit = listPosts[position]
-                showDialogEditPost(postEdit)
+
+                if (Constants.EDIT == type) {
+                    showDialogEditPost(postEdit)
+                } else {
+                    showDialogDeletePost(postEdit)
+                }
             }
 
             override fun onLoadMore() {
@@ -89,9 +99,10 @@ class PostsFragment : Fragment() {
         })
     }
 
-    private fun getUserLogged(){
+    private fun getUserLogged() {
 
-        val sharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
+        val sharedPreferences =
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
         val userId = sharedPreferences.getLong(Constants.USER_LOGGED_ID, 0)
 
         userLogged = Select.from(UserEntity::class.java)
@@ -104,14 +115,14 @@ class PostsFragment : Fragment() {
         loadPosts()
     }
 
-    private fun loadPosts(){
+    private fun loadPosts() {
 
         val posts = Select.from(PostsEntity::class.java)
             .limit("$offset,$loadPerPage")
             .orderBy("id")
             .list()
 
-        if(!posts.isNullOrEmpty()){
+        if (!posts.isNullOrEmpty()) {
             listPosts.addAll(posts)
             adapter?.notifyDataSetChanged()
             offset += posts.size
@@ -126,7 +137,31 @@ class PostsFragment : Fragment() {
         }
     }
 
-    private fun showDialogEditPost(editPostEntity: PostsEntity){
+    private fun showDialogDeletePost(editPostEntity: PostsEntity) {
+
+        val builder = Builder(context)
+
+        builder.setTitle(getString(R.string.delete_post_title))
+        builder.setMessage(getString(R.string.delete_post_description))
+
+        builder.setPositiveButton(
+            getString(R.string.yes)
+        ) { dialog, _ ->
+            deletePost(editPostEntity)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton(
+            getString(R.string.no)
+        ) { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
+    private fun showDialogEditPost(editPostEntity: PostsEntity) {
 
         val viewDialog = Dialog(requireContext())
         viewDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -144,7 +179,7 @@ class PostsFragment : Fragment() {
         title.text = getString(R.string.edit_post)
 
         btConfirm.setOnClickListener {
-            if(editPost.text.toString().trim().isNotEmpty()){
+            if (editPost.text.toString().trim().isNotEmpty()) {
                 editPostEntity.message = editPost.text.toString()
                 saveEditPost(editPostEntity)
                 viewDialog.dismiss()
@@ -158,7 +193,7 @@ class PostsFragment : Fragment() {
         viewDialog.show()
     }
 
-    private fun showDialogNewPost(){
+    private fun showDialogNewPost() {
 
         val viewDialog = Dialog(requireContext())
         viewDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -174,7 +209,7 @@ class PostsFragment : Fragment() {
         title.text = getString(R.string.new_post)
 
         btConfirm.setOnClickListener {
-            if(editNewPost.text.toString().trim().isNotEmpty()){
+            if (editNewPost.text.toString().trim().isNotEmpty()) {
                 saveNewPost(editNewPost.text.toString())
                 viewDialog.dismiss()
             }
@@ -187,12 +222,18 @@ class PostsFragment : Fragment() {
         viewDialog.show()
     }
 
-    private fun saveEditPost(editPost: PostsEntity){
+    private fun deletePost(deletePost: PostsEntity) {
+        listPosts.remove(deletePost)
+        deletePost.delete()
+        adapter?.notifyDataSetChanged()
+    }
+
+    private fun saveEditPost(editPost: PostsEntity) {
         editPost.save()
         adapter?.notifyDataSetChanged()
     }
 
-    private fun saveNewPost(message: String){
+    private fun saveNewPost(message: String) {
         userLogged?.let {
             val post = PostsEntity(it.name, message, Date(), it.id)
             post.save()

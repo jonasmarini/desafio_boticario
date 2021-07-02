@@ -70,6 +70,18 @@
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_edit"
                 app:tint="@color/dark_purple"
+                android:layout_toLeftOf="@+id/img_delete_post"
+                android:layout_toStartOf="@+id/img_delete_post"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" />
+
+            <ImageView
+                android:id="@+id/img_delete_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_delete"
+                app:tint="@color/dark_purple"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.desafio_boticario.R
+import constants.Constants
 import de.hdodenhof.circleimageview.CircleImageView
 import entities.PostsEntity
 import utils.formatDateToString
@@ -111,7 +112,7 @@ class PostsAdapter(private val posts: ArrayList<PostsEntity>, private val contex
     }
 
     interface PostsListener {
-        fun onButtonClicked(position: Int)
+        fun onButtonClicked(position: Int, type: String)
         fun onLoadMore()
     }
 
@@ -127,14 +128,23 @@ class PostsAdapter(private val posts: ArrayList<PostsEntity>, private val contex
             val date = itemView.findViewById<TextView>(R.id.txt_date_news_boticario)
             val message = itemView.findViewById<TextView>(R.id.txt_message_news_boticario)
             val imgEdit = itemView.findViewById<ImageView>(R.id.img_edit_post)
+            val imgDelete = itemView.findViewById<ImageView>(R.id.img_delete_post)
 
             if(post.userId == userId){
+
                 imgEdit.visibility = View.VISIBLE
                 imgEdit.setOnClickListener {
-                    listener?.onButtonClicked(adapterPosition)
+                    listener?.onButtonClicked(adapterPosition, Constants.EDIT)
                 }
+
+                imgDelete.visibility = View.VISIBLE
+                imgDelete.setOnClickListener {
+                    listener?.onButtonClicked(adapterPosition, Constants.DELETE)
+                }
+
             } else {
                 imgEdit.visibility = View.GONE
+                imgDelete.visibility = View.GONE
             }
 
             author.text = post.author
