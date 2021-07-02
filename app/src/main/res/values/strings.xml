@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">desafio_boticario</string>
+    <string name="app_name">Desafio Boticario</string>
     <string name="jonas_name">Jonas Rodrigo Marini</string>
     <string name="jonas_email">jonas.marini.tot@gmail.com</string>
     <string name="email_hint">E-mail</string>
