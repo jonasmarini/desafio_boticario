@@ -58,7 +58,7 @@
                     android:textCursorDrawable="@drawable/cursor_color_white"
                     android:drawablePadding="5dp"
                     android:hint="@string/name_hint"
-                    android:inputType="text" />
+                    android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +114,6 @@
                     android:textColor="@color/white"
                     android:textCursorDrawable="@drawable/cursor_color_white"
                     android:hint="@string/password_hint"
-                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
