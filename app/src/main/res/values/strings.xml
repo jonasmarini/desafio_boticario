@@ -23,4 +23,6 @@
     <string name="cancel">Cancelar</string>
     <string name="limit_characters">Limite de 280 caracteres.</string>
     <string name="login_error">Erro de login, verifique, se o email e a senha estão corretos.</string>
+    <string name="email_registered">Este email já está cadastrado</string>
+    <string name="successfully_registered">Usuário cadastrado com sucesso</string>
 </resources>

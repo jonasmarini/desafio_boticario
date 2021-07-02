@@ -1,5 +1,6 @@
 package com.example.desafio_boticario
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.EditText
@@ -11,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.orm.query.Condition
 import com.orm.query.Select
+import constants.Constants
 import entities.UserEntity
 
 class RegisterActivity : AppCompatActivity() {
@@ -75,9 +77,12 @@ class RegisterActivity : AppCompatActivity() {
                     editRegisterPassword.text.toString()
                 )
                 user.save()
+                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                intent.putExtra(Constants.SUCCESSFULLY_REGISTERED, true)
+                startActivity(intent)
                 finish()
             } else {
-                Snackbar.make(layoutRegister, "Este email já está cadastrado", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(layoutRegister, getString(R.string.email_registered), Snackbar.LENGTH_LONG).show()
             }
 
         }

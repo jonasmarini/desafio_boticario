@@ -5,4 +5,5 @@ object Constants {
     const val URL_GET_NEWS = "data.json"
     const val USER_LOGGED_ID = "userLoggedId"
     const val FIRST_LOGIN = "firstLogin"
+    const val SUCCESSFULLY_REGISTERED = "successfullyRegistered"
 }

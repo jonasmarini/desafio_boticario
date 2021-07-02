@@ -30,6 +30,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setComponents()
+
+        val successfullyRegistered = intent.getBooleanExtra(Constants.SUCCESSFULLY_REGISTERED, false)
+
+        if(successfullyRegistered){
+            Snackbar.make(layoutLogin, getString(R.string.successfully_registered), Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun setComponents(){
