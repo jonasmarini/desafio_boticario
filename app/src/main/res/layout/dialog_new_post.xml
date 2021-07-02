@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_radius">
+
+    <TextView
+        android:id="@+id/txt_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_post"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <View
+        android:id="@+id/line_separate_top_new_post"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txt_dialog"
+        android:layout_marginTop="10dp"
+        android:layout_height="1dp"
+        android:background="#e0e0e0"/>
+
+    <EditText
+        android:id="@+id/edit_new_post"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/line_separate_top_new_post"
+        android:hint="@string/new_post_hint"
+        android:inputType="text|textMultiLine"
+        android:background="@null"
+        android:gravity="top"
+        android:textCursorDrawable="@drawable/cursor_color_purple"
+        android:maxLength="280"/>
+
+    <View
+        android:id="@+id/line_separate_bottom_new_post"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/edit_new_post"
+        android:layout_marginTop="10dp"
+        android:layout_height="1dp"
+        android:background="#e0e0e0"/>
+
+    <TextView
+        android:id="@+id/limit_characters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_separate_bottom_new_post"
+        android:text="@string/limit_characters"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/limit_characters"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/bt_cancel_new_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/dark_purple"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:id="@+id/bt_confirm_new_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textColor="@color/dark_purple"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

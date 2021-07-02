@@ -1,6 +1,7 @@
 package utils
 
 import java.text.SimpleDateFormat
+import java.util.*
 
 fun String.formatDate(): String{
 
@@ -10,6 +11,14 @@ fun String.formatDate(): String{
     date?.let {
         val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
         return sdf.format(date)
+    }
+    return ""
+}
+
+fun Date.formatDateToString(): String {
+    this.let {
+        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+        return sdf.format(this)
     }
     return ""
 }

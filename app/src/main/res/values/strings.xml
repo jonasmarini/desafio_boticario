@@ -14,4 +14,11 @@
     <string name="menu_news_boticario">Novidades do Boticário</string>
     <string name="menu_exit">Sair</string>
     <string name="no_news">Não há novidades</string>
+    <string name="no_posts">Não há postagens</string>
+    <string name="new_post">Nova Postagem</string>
+    <string name="new_post_hint">Digite a nova Postagem…</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="limit_characters">Limite de 280 caracteres.</string>
+    <string name="login_error">Erro de login, verifique, se o email e a senha estão corretos.</string>
 </resources>

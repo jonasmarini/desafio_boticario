@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.orm.query.Condition
 import com.orm.query.Select
+import constants.Constants
 import entities.UserEntity
 
 class LoginActivity : AppCompatActivity() {
@@ -61,8 +62,13 @@ class LoginActivity : AppCompatActivity() {
                 .first()
 
             if(user == null){
-                Snackbar.make(layoutRegister, "Erro de login, verifique, se o email e a senha estão corretos", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(layoutRegister, getString(R.string.login_error), Snackbar.LENGTH_LONG).show()
             } else {
+
+                val sharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+                val editor = sharedPreferences.edit()
+                editor.putLong(Constants.USER_LOGGED_ID, user.id).apply()
+
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
